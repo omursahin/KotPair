@@ -60,6 +60,13 @@ class Randomness {
         return k
     }
 
+    fun nextTestCase(maxValArray: MutableList<Int>):IntArray{
+        val testCase = IntArray(maxValArray.size)
+        maxValArray.forEachIndexed{index, element->
+            testCase[index]=nextInt(element)
+        }
+        return testCase
+    }
     /**
      * A random int between "min" and "max", both inclusive
      */

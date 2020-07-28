@@ -3,10 +3,12 @@ package org.kotpair.representation.ca
 import org.kotpair.search.Individual
 
 
-class CaIndividual : Individual() {
+class CaIndividual(val testCases:MutableList<CaTestCase>) : Individual() {
 
     override fun copy(): Individual {
-        return CaIndividual()
+        return CaIndividual(
+            testCases
+        )
     }
-    override fun size() = 0
+    override fun size() = testCases.size
 }

@@ -391,7 +391,11 @@ class KPConfig {
     @Min(0.0) @Max(1.0)
     var probOfSmartSampling = 0.5
 
-    @Cfg("Max number of 'actions' (e.g., RESTful calls or SQL commands) that can be done in a single test")
+    @Cfg("Min number of 'test case' that can be done in a single test")
+    @Min(1.0)
+    var minTestSize = 5
+
+    @Cfg("Max number of 'test case' that can be done in a single test")
     @Min(1.0)
     var maxTestSize = 10
 

@@ -3,6 +3,9 @@ package org.kotpair.representation.ca.service
 import com.google.inject.Inject
 import org.kotpair.KPConfig
 import org.kotpair.representation.ca.CaIndividual
+import org.kotpair.representation.ca.CaParameters
+import org.kotpair.representation.ca.CaTestCase
+import org.kotpair.search.TestCase
 import org.kotpair.search.service.Sampler
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -16,27 +19,32 @@ class CaSampler : Sampler<CaIndividual>(){
         private val log: Logger = LoggerFactory.getLogger(CaSampler::class.java)
     }
 
-     @Inject
-    private lateinit var configuration: KPConfig
+    @Inject
+    protected lateinit var param: CaParameters
 
     @PostConstruct
     private fun initialize() {
 
         log.debug("Initializing {}", CaSampler::class.simpleName)
-        //Read the input file
-        File(configuration.parametersFile).useLines {
-            val parameterList = it.toList().iterator()
-            while (parameterList.hasNext()){
-                print(parameterList.next())
-            }
-        }
 
         log.debug("Done initializing {}", CaSampler::class.simpleName)
     }
 
     override fun sampleAtRandom(): CaIndividual {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val testCases = mutableListOf<CaTestCase>()
+        val n = randomness.nextInt(config.minTestSize, config.maxTestSize)
+        (0 until n).forEach {
+            testCases.add(sampleRandomTestCase())
+        }
+
+        return CaIndividual(testCases)
     }
 
+    fun sampleRandomTestCase(): CaTestCase{
+        //TODO randomness sınıfına belirtilen dizi boyutunda ve maksimmum değerleri maxValArray kadar olan bir dizi olusturmasini sagla.
+        val a =param.getMaxValArray()
+        val testCase = CaTestCase(randomness.nextTestCase(a))
+        return testCase
 
+     }
 }

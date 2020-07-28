@@ -2,6 +2,7 @@ package org.kotpair.search.service
 
 import com.google.inject.Inject
 import org.kotpair.KPConfig
+import org.kotpair.representation.ca.CaParameters
 import org.kotpair.search.Individual
 import org.kotpair.search.Randomness
 
@@ -10,6 +11,7 @@ abstract class Sampler<T> where T : Individual {
 
     @Inject
     protected lateinit var randomness: Randomness
+
 
     @Inject
     protected lateinit var config: KPConfig
