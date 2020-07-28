@@ -33,13 +33,10 @@ class CaFitness : FitnessFunction<CaIndividual>() {
         log.debug("Done initializing {}", CaFitness::class.simpleName)
     }
 
-
-
-
     override fun doCalculateCoverage(individual: CaIndividual): EvaluatedIndividual<CaIndividual>? {
 
 
-//TODO fitness hesabı burada yapılmalı
+        //TODO fitness hesabı burada yapılmalı
 
         val fv = FitnessValue(individual.size().toDouble())
 
@@ -54,10 +51,7 @@ class CaFitness : FitnessFunction<CaIndividual>() {
         //TODO numpy benzeri bir yapi oluşturursam daha rahat unique hesaplayabilirim. Yoksa java pairwisedaki gibi yapmak lazim.
         return EvaluatedIndividual(fv, individual.copy() as CaIndividual)
 
-        /*
-            TODO when dealing with seeding, might want to extend EvaluatedIndividual
-            to keep track of AdditionalInfo
-         */
+     
     }
 
 }
