@@ -49,6 +49,10 @@ class CaFitness : FitnessFunction<CaIndividual>() {
 
     }
 
+    override fun isMaxValue(value: Double) = value == param.getMaximumNumberOfPair()
+    override fun getMaxValue() = param.getMaximumNumberOfPair()
+
+
     fun getUniqueNumber(matrix: MutableList<IntArray>, firstIndex: Int, secondIndex: Int): Double {
 
         var firstColumn = getColumn(matrix, firstIndex)

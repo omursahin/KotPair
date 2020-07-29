@@ -49,7 +49,8 @@ abstract class FitnessFunction<T>  where T : Individual {
      * @return [null] if there were problems in calculating the coverage
      */
     protected abstract fun doCalculateCoverage(individual: T) : EvaluatedIndividual<T>?
-
+    protected abstract fun isMaxValue(value: Double): Boolean
+    abstract fun getMaxValue(): Double
     /**
      * Try to reinitialize the SUT. This is done when there are issues
      * in calculating coverage

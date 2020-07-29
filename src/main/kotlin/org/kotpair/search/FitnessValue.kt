@@ -1,5 +1,8 @@
 package org.kotpair.search
 
+import com.google.inject.Inject
+import org.kotpair.representation.ca.CaParameters
+
 
 /**
 As the number of targets is unknown, we cannot have
@@ -10,23 +13,19 @@ class FitnessValue(
         /** An estimation of the size of the individual that obtained
          * this fitness value. Longer individuals are worse, but only
          * when fitness is not strictly better */
-        var size: Double) {
+        var distance: Double) {
+
 
     init {
-        if (size < 0.0) {
-            throw IllegalArgumentException("Invalid size value: $size")
+        if (distance < 0.0) {
+            throw IllegalArgumentException("Invalid size value: $distance")
         }
     }
 
-    companion object {
 
-        const val MAX_VALUE = 1.0
-
-        fun isMaxValue(value: Double) = value == MAX_VALUE
-    }
 
     fun copy(): FitnessValue {
-             val copy = FitnessValue(size)
+             val copy = FitnessValue(distance)
              return copy
     }
 

@@ -321,7 +321,7 @@ class KPConfig {
     var stoppingCriterion = StoppingCriterion.FITNESS_EVALUATIONS
 
 
-    val defaultMaxActionEvaluations = 100
+    val defaultMaxActionEvaluations = 100000
 
     @Cfg("Maximum number of action evaluations for the search." +
             " A fitness evaluation can be composed of 1 or more actions," +
@@ -393,14 +393,14 @@ class KPConfig {
 
     @Cfg("Min number of 'test case' that can be done in a single test")
     @Min(1.0)
-    var minTestSize = 2
+    var minTestSize = 16
 
     @Cfg("Max number of 'test case' that can be done in a single test")
     @Min(1.0)
-    var maxTestSize = 5
+    var maxTestSize = 20
 
     @Cfg("Whether to print how much search done so far")
-    var showProgress = false
+    var showProgress = true
 
     @Experimental
     @Cfg("Whether or not enable a search process monitor for archiving evaluated individuals and Archive regarding an evaluation of search. "+

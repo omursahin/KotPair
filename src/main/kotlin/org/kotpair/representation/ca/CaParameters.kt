@@ -23,7 +23,7 @@ class CaParameters : Parameters() {
     @Inject
     private lateinit var configuration: KPConfig
 
-    private var maximumNumberOfPair = 0
+    private var maximumNumberOfPair = 0.0
 
     private var parameters: MutableList<Parameter> = mutableListOf()
 
@@ -39,6 +39,7 @@ class CaParameters : Parameters() {
     fun getTestCasePairs(): Sequence<Pair<Int, Int>> {
         return testCasePairs
     }
+    fun getMaximumNumberOfPair()=maximumNumberOfPair
 
     override fun copy(): Parameters {
         return CaParameters()
@@ -73,8 +74,8 @@ class CaParameters : Parameters() {
                 yield(arr[i] to arr[j])
     }
 
-    fun maximumPairNumber(): Int {
-        var maxPair = 0
+    fun maximumPairNumber(): Double {
+        var maxPair = 0.0
         testCasePairs.iterator().forEach {
             maxPair += maxValArray[it.first]*maxValArray[it.second]
             }
