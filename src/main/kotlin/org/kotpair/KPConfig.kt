@@ -393,11 +393,11 @@ class KPConfig {
 
     @Cfg("Min number of 'test case' that can be done in a single test")
     @Min(1.0)
-    var minTestSize = 5
+    var minTestSize = 2
 
     @Cfg("Max number of 'test case' that can be done in a single test")
     @Min(1.0)
-    var maxTestSize = 10
+    var maxTestSize = 5
 
     @Cfg("Whether to print how much search done so far")
     var showProgress = false

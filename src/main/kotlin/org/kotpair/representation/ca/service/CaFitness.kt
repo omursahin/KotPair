@@ -1,6 +1,7 @@
 package org.kotpair.representation.ca.service
 
 import com.google.inject.Inject
+import com.sun.xml.internal.fastinfoset.util.StringArray
 import org.kotpair.representation.ca.CaIndividual
 import org.kotpair.representation.ca.CaParameters
 import org.kotpair.search.EvaluatedIndividual
@@ -34,24 +35,40 @@ class CaFitness : FitnessFunction<CaIndividual>() {
     }
 
     override fun doCalculateCoverage(individual: CaIndividual): EvaluatedIndividual<CaIndividual>? {
+    /* Fitness hesabı burada gerceklestiriliyor. Column bazında kombinasyonlar hesaplaniyor ve her bir ikilinin farkli test durumlari toplaniyor. */
 
+        var fitness = 0.0
 
-        //TODO fitness hesabı burada yapılmalı
-
-        val fv = FitnessValue(individual.size().toDouble())
-
-        //TODO Setlerdeki unique değerlere bakıp saymak lazım.
-        //8 değeri toplam parametre sayısı olmalı.
         val pairs = param.getTestCasePairs()
-
         pairs.iterator().forEach {
-            val a = it
-            println("1: ${a.first} 2: ${a.second}")
+            fitness += getUniqueNumber(individual.testCases,it.first,it.second)
         }
-        //TODO numpy benzeri bir yapi oluşturursam daha rahat unique hesaplayabilirim. Yoksa java pairwisedaki gibi yapmak lazim.
+        val fv = FitnessValue(fitness)
+
         return EvaluatedIndividual(fv, individual.copy() as CaIndividual)
 
      
+    }
+
+    fun getUniqueNumber(matrix: MutableList<IntArray>, firstIndex: Int, secondIndex: Int): Double {
+
+        var firstColumn = getColumn(matrix, firstIndex)
+        var secondColumn = getColumn(matrix, secondIndex)
+        val mixedString =  arrayOfNulls<String>(firstColumn.size)
+
+        for(i in 0 until firstColumn.size){
+            mixedString[i]="${firstColumn[i]}-${secondColumn[i]}"
+        }
+        println(mixedString)
+        return mixedString.distinct().size.toDouble()
+    }
+
+    fun getColumn(matrix : MutableList<IntArray>, colNumber : Int):IntArray{
+        val column = IntArray(matrix.size)
+        matrix.forEachIndexed{index, element->
+            column[index]=element[colNumber]
+        }
+        return column
     }
 
 }

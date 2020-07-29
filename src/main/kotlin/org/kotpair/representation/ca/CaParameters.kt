@@ -23,6 +23,8 @@ class CaParameters : Parameters() {
     @Inject
     private lateinit var configuration: KPConfig
 
+    private var maximumNumberOfPair = 0
+
     private var parameters: MutableList<Parameter> = mutableListOf()
 
     private var maxValArray: MutableList<Int> = mutableListOf()
@@ -60,8 +62,8 @@ class CaParameters : Parameters() {
                 }
             }
         }
-        testCasePairs = elementPairs(listOf(0..size()).flatten())
-
+        testCasePairs = elementPairs(listOf(0..size()-1).flatten())
+        maximumNumberOfPair = maximumPairNumber()
         CaParameters.log.debug("Done initializing {}", CaParameters::class.simpleName)
     }
 
@@ -71,4 +73,11 @@ class CaParameters : Parameters() {
                 yield(arr[i] to arr[j])
     }
 
+    fun maximumPairNumber(): Int {
+        var maxPair = 0
+        testCasePairs.iterator().forEach {
+            maxPair += maxValArray[it.first]*maxValArray[it.second]
+            }
+        return maxPair
+    }
 }
