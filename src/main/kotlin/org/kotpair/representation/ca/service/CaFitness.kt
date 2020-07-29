@@ -47,7 +47,6 @@ class CaFitness : FitnessFunction<CaIndividual>() {
 
         return EvaluatedIndividual(fv, individual.copy() as CaIndividual)
 
-     
     }
 
     fun getUniqueNumber(matrix: MutableList<IntArray>, firstIndex: Int, secondIndex: Int): Double {
@@ -59,7 +58,6 @@ class CaFitness : FitnessFunction<CaIndividual>() {
         for(i in 0 until firstColumn.size){
             mixedString[i]="${firstColumn[i]}-${secondColumn[i]}"
         }
-        println(mixedString)
         return mixedString.distinct().size.toDouble()
     }
 
