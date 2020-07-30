@@ -1,5 +1,6 @@
 package org.kotpair.search.algorithms
 
+import com.google.inject.Inject
 import org.kotpair.KPConfig
 import org.kotpair.representation.ca.CaIndividual
 import org.kotpair.search.EvaluatedIndividual
@@ -8,6 +9,7 @@ import org.kotpair.search.Individual
 import org.kotpair.search.Solution
 import org.kotpair.search.service.SearchAlgorithm
 import java.lang.Exception
+
 
 class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
 
@@ -27,6 +29,7 @@ class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
         time.startSearch()
         population.clear()
         initPopulation(config.populationSize)
+
 
         var dongu=0
         var nextPop: MutableList<Data> = mutableListOf()
@@ -84,6 +87,7 @@ class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
 
             population.forEachIndexed { index, pop ->
                 if(time.shouldContinueSearch()){
+                    getNeighbour().findNeighbour(pop.ind as EvaluatedIndividual<T>)
 //                    if(pop.trial>config.limit)
 //                    {
                        val sam=sampler.sample()

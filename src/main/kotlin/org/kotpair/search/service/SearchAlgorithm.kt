@@ -5,6 +5,8 @@ import org.kotpair.search.Individual
 import org.kotpair.KPConfig
 import org.kotpair.search.Randomness
 import org.kotpair.search.Solution
+import org.kotpair.search.service.neighbourhood.Neighbour
+import org.kotpair.search.service.neighbourhood.StandardNeighbour
 
 
 abstract class SearchAlgorithm<T> where T : Individual {
@@ -30,7 +32,12 @@ abstract class SearchAlgorithm<T> where T : Individual {
     @Inject
     protected lateinit var config: KPConfig
 
+    @Inject
+    private lateinit var neighbour: Neighbour<T>
 
+    protected fun getNeighbour() : Neighbour<T>{
+        return neighbour
+    }
     abstract fun search() : Solution<T>
 
     abstract fun getType() : KPConfig.Algorithm
