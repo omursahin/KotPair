@@ -4,6 +4,8 @@ package org.kotpair.search
 
 abstract class Individual{
 
+    abstract val testCases: MutableList<IntArray>
+
     /**
      * Make a deep copy of this individual
      */

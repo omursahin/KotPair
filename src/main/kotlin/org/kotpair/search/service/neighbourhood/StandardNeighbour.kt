@@ -5,6 +5,7 @@ import org.kotpair.search.EvaluatedIndividual
 import org.kotpair.search.Individual
 import java.math.BigDecimal
 import java.math.RoundingMode
+import kotlin.math.roundToInt
 
 /**
  * make the standard mutator open for extending the mutator,
@@ -20,20 +21,38 @@ open class StandardNeighbour<T> : Neighbour<T>() where T : Individual {
 
 
 
-    override fun findNeighbour(individual: EvaluatedIndividual<T>): T {
+    override fun findNeighbour(individualOne: EvaluatedIndividual<T>,
+                               individualTwo: EvaluatedIndividual<T>): T {
 
         // First mutate the individual
-        val individualToMutate = individual.individual
+        val individualToChangeOne = individualOne.individual
 
 
 
-        val copy =  individualToMutate.copy() as T
+        val copy =  individualToChangeOne.copy() as T
 
+        val numberOfChanges = apc.getNumberOfChanges()
+        (0 until numberOfChanges).forEach{
+            val changeOne = randomness.nextInt(copy.size())
+            val changeTwo = randomness.nextInt(individualTwo.individual.size())
+            copy.testCases[changeOne] = combineTestCases(copy.testCases.get(changeOne), individualTwo.individual.testCases.get(changeTwo))
+        }
         //kac defa hangi elemanlar degistirilecek ona bak.
 
 
         return copy
 
+    }
+    fun combineTestCases(tc1:IntArray,tc2:IntArray):IntArray{
+        val testCase = IntArray(tc1.size)
+        (0 until tc1.size).forEach{
+            testCase[it] = mod((tc1[it] + randomness.nextFloat()*(tc1[it]-tc2[it])).roundToInt(),param.getMaxValArray()[it])
+        }
+        return testCase
+    }
+
+    fun mod(x:Int, m:Int):Int{
+        return (x%m+m)%m
     }
 
 }

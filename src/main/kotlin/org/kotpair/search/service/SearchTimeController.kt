@@ -49,7 +49,7 @@ class SearchTimeController {
         evaluatedActions += n
         listeners.forEach{it.newActionEvaluated()}
     }
-
+//TODO elde edilen maksimum hedefi burada kaydet. Daha sonra güncelleme olursa hangi adımda olduğunu bildir.
     fun newCoveredTarget(){
         newActionImprovement()
 

@@ -38,7 +38,7 @@ class CaSampler : Sampler<CaIndividual>(){
 
     fun sampleRandomTestCase(): IntArray{
         //TODO randomness sınıfına belirtilen dizi boyutunda ve maksimmum değerleri maxValArray kadar olan bir dizi olusturmasini sagla.
-        val a =param.getMaxValArray()
+        val a = param.getMaxValArray()
         val testCase = randomness.nextTestCase(a)
         return testCase
 

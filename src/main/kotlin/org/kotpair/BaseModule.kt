@@ -26,6 +26,9 @@ class BaseModule(val args: Array<String>) : AbstractModule() {
         bind(SearchTimeController::class.java)
             .asEagerSingleton()
 
+        bind(AdaptiveParameterControl::class.java)
+            .asEagerSingleton()
+
         bind(Randomness::class.java)
                 .asEagerSingleton()
 

@@ -37,75 +37,76 @@ class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
         while (time.shouldContinueSearch()) {
             dongu+=1
 
-//            population.forEachIndexed { index, pop ->
-//                if(time.shouldContinueSearch()){
-//
-//
-//
-//
-//
-//                    var ind = (pop.ind as EvaluatedIndividual<T>).copy()
-//
-////                    getMutatator().mutateAndSave(apc.getNumberOfMutations(),ind, archive)
-////                        ?.let{
-////                            var data = Data(it)
-////                            if(!archive.added)
-////                            {
-////                                data.trial=population.get(index).trial+1
-////
-////                            }
-////                            population.set(index,data)
-////                        }
-//
-//                }
-//            }
-//
-//                var popCount=0
-//                var dCount=0
-//                while (popCount<config.populationSize && time.shouldContinueSearch())
-//                {
-//                    var ind = archive.sampleIndividual()
-//                    try {
-//
-//                        if(config.apcNumberOfMutationOnlooker)
-//                            getMutatator().mutateAndSave(apc.getNumberOfMutationsABC(),ind,archive)?.let {if(archive.added)
-//                            {population.set(dCount,Data(it))}}
-//                        else
-//                            getMutatator().mutateAndSave(ind,archive)?.let {if(archive.added)
-//                            {population.set(dCount,Data(it))}}
-//                        dCount=(dCount+1)%(population.size-1)
-//                        popCount+=1
-//
-//                    }
-//                    catch (e: Exception) {
-//                        println("selam")
-//
-//                    }
-//                }
-
-
-
+            // Employed Bee Phase
             population.forEachIndexed { index, pop ->
                 if(time.shouldContinueSearch()){
-                    getNeighbour().findNeighbour(pop.ind as EvaluatedIndividual<T>)
-//                    if(pop.trial>config.limit)
-//                    {
-                       val sam=sampler.sample()
-                        ff.calculateCoverage(sam)
-                            ?.also {
-                                if(it.fitness.distance>population.get(index).ind.fitness.distance){
-                                population.set(index,(Data(it)))
-                                }
+                    val secondIndex = randomness.nextInt(population.size)
+                    getNeighbour().findNeighbour(pop.ind as EvaluatedIndividual<T>, population.get(secondIndex).ind as EvaluatedIndividual<T>)?.let {
+                        ff.calculateCoverage(it)?.also { it2 ->
+                            if(it2.fitness.distance>population.get(index).ind.fitness.distance){
+                                population.set(index,(Data(it2)))
+                            }else {
+                                population.get(index).trial += 1
                             }
+                        }
+                    }
 
-
-//                    }
                 }}
             nextPop.addAll(population.sortedWith(compareBy { it.ind.fitness.distance })
                 .toMutableList())
             population.clear()
             population.addAll(nextPop)
             nextPop.clear()
+
+            //Onlooker Bee Phase
+
+            var popCount=0
+            var dCount=0
+            val maxVal = population.get(population.size-1).ind.fitness.distance
+            while (popCount<population.size && time.shouldContinueSearch())
+            {
+
+
+                val prob = 1-(population.get(dCount).ind.fitness.distance * 0.9)/maxVal + 0.1
+
+                if(randomness.nextBoolean(prob)){
+                    val secondIndex = randomness.nextInt(population.size)
+
+                    getNeighbour().findNeighbour(population.get(dCount).ind as EvaluatedIndividual<T>, population.get(secondIndex).ind as EvaluatedIndividual<T>)?.let {
+                        ff.calculateCoverage(it)?.also { it2 ->
+                            if(it2.fitness.distance>population.get(dCount).ind.fitness.distance){
+                                population.set(dCount,(Data(it2)))
+                            }else {
+                                population.get(dCount).trial += 1
+                            }
+                        }
+                    }
+                    popCount+=1
+                }
+
+                dCount=(dCount+1)%(population.size-1)
+
+            }
+            nextPop.addAll(population.sortedWith(compareBy { it.ind.fitness.distance })
+                .toMutableList())
+            population.clear()
+            population.addAll(nextPop)
+            nextPop.clear()
+
+            // Scout Bee Phase
+            popCount = 0
+            while(popCount < population.size-1){
+                if(population.get(popCount).trial>config.limit){
+                    sampleIndividual()?.run {  population.set(popCount,Data(this))
+
+                    }
+                   continue
+                }
+                popCount+=1
+                 }
+
+
+
             //TODO bu raporlama kısmını raporlamaya aktar.
             println("First: ${population.get(0).ind.fitness.distance} - Second: ${population.get(population.size-1).ind.fitness.distance} - Max Val: ${ff.getMaxValue()}")
         }
