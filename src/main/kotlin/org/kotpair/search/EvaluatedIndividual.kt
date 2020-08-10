@@ -11,7 +11,7 @@ class EvaluatedIndividual<T>(val fitness: FitnessValue,
                               * results than actions
                               */
                             ) where T : Individual {
-
+//TODO FitnessValue'lardan olusmali ve ikili sayisi kadar fitness value olmali. Ve burada toplamini (combined) vermeliyim
     init{
 
     }
