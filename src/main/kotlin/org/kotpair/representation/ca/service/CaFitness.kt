@@ -37,13 +37,12 @@ class CaFitness : FitnessFunction<CaIndividual>() {
     override fun doCalculateCoverage(individual: CaIndividual): EvaluatedIndividual<CaIndividual>? {
     /* Fitness hesabı burada gerceklestiriliyor. Column bazında kombinasyonlar hesaplaniyor ve her bir ikilinin farkli test durumlari toplaniyor. */
 
-        var fitness = 0.0
-
         val pairs = param.getTestCasePairs()
-        pairs.iterator().forEach {
-            fitness += getUniqueNumber(individual.testCases,it.first,it.second)
+        val fv = FitnessValue(pairs.count())
+
+        for ((index, it) in pairs.iterator().withIndex()) {
+            fv.updateTarget(index,getUniqueNumber(individual.testCases,it.first,it.second),getMaxValueOfTarget(it.first,it.second))
         }
-        val fv = FitnessValue(fitness)
 
         return EvaluatedIndividual(fv, individual.copy() as CaIndividual)
 
@@ -52,7 +51,9 @@ class CaFitness : FitnessFunction<CaIndividual>() {
     override fun isMaxValue(value: Double) = value == param.getMaximumNumberOfPair()
     override fun getMaxValue() = param.getMaximumNumberOfPair()
 
-
+    fun getMaxValueOfTarget(firstIndex:Int, secondIndex:Int):Double{
+        return (param.getMaxValArray()[firstIndex]*param.getMaxValArray()[secondIndex]).toDouble()
+    }
     fun getUniqueNumber(matrix: MutableList<IntArray>, firstIndex: Int, secondIndex: Int): Double {
 
         var firstColumn = getColumn(matrix, firstIndex)

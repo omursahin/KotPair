@@ -43,7 +43,7 @@ class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
                     val secondIndex = randomness.nextInt(population.size)
                     getNeighbour().findNeighbour(pop.ind as EvaluatedIndividual<T>, population.get(secondIndex).ind as EvaluatedIndividual<T>)?.let {
                         ff.calculateCoverage(it)?.also { it2 ->
-                            if(it2.fitness.distance>population.get(index).ind.fitness.distance){
+                            if(it2.fitness.computeFitnessScore()>population.get(index).ind.fitness.computeFitnessScore()){
                                 population.set(index,(Data(it2)))
                             }else {
                                 population.get(index).trial += 1
@@ -52,7 +52,7 @@ class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
                     }
 
                 }}
-            nextPop.addAll(population.sortedWith(compareBy { it.ind.fitness.distance })
+            nextPop.addAll(population.sortedWith(compareBy { it.ind.fitness.computeFitnessScore() })
                 .toMutableList())
             population.clear()
             population.addAll(nextPop)
@@ -62,19 +62,19 @@ class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
 
             var popCount=0
             var dCount=0
-            val maxVal = population.get(population.size-1).ind.fitness.distance
+            val maxVal = population.get(population.size-1).ind.fitness.computeFitnessScore()
             while (popCount<population.size && time.shouldContinueSearch())
             {
 
 
-                val prob = 1-(population.get(dCount).ind.fitness.distance * 0.9)/maxVal + 0.1
+                val prob = 1-(population.get(dCount).ind.fitness.computeFitnessScore() * 0.9)/maxVal + 0.1
 
                 if(randomness.nextBoolean(prob)){
                     val secondIndex = randomness.nextInt(population.size)
 
                     getNeighbour().findNeighbour(population.get(dCount).ind as EvaluatedIndividual<T>, population.get(secondIndex).ind as EvaluatedIndividual<T>)?.let {
                         ff.calculateCoverage(it)?.also { it2 ->
-                            if(it2.fitness.distance>population.get(dCount).ind.fitness.distance){
+                            if(it2.fitness.computeFitnessScore()>population.get(dCount).ind.fitness.computeFitnessScore()){
                                 population.set(dCount,(Data(it2)))
                             }else {
                                 population.get(dCount).trial += 1
@@ -87,7 +87,7 @@ class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
                 dCount=(dCount+1)%(population.size-1)
 
             }
-            nextPop.addAll(population.sortedWith(compareBy { it.ind.fitness.distance })
+            nextPop.addAll(population.sortedWith(compareBy { it.ind.fitness.computeFitnessScore() })
                 .toMutableList())
             population.clear()
             population.addAll(nextPop)
@@ -108,10 +108,10 @@ class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
 
 
             //TODO bu raporlama kısmını raporlamaya aktar.
-            println("First: ${population.get(0).ind.fitness.distance} - Second: ${population.get(population.size-1).ind.fitness.distance} - Max Val: ${ff.getMaxValue()}")
+            println("First: ${population.get(0).ind.fitness.computeFitnessScore()} - Second: ${population.get(population.size-1).ind.fitness.computeFitnessScore()} - Max Val: ${ff.getMaxValue()}")
         }
         val uniques = mutableSetOf<EvaluatedIndividual<T>>()
-        val overall = FitnessValue(0.0)
+        val overall = FitnessValue(1)
         return Solution(overall, uniques.toMutableList())
     }
 
