@@ -67,7 +67,7 @@ class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
             {
 
 
-                val prob = 1-(population.get(dCount).ind.fitness.computeFitnessScore() * 0.9)/maxVal + 0.1
+                val prob = 1-((population.get(dCount).ind.fitness.computeFitnessScore() * 0.9)/maxVal + 0.1)
 
                 if(randomness.nextBoolean(prob)){
                     val secondIndex = randomness.nextInt(population.size)

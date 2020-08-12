@@ -23,6 +23,9 @@ class SearchTimeController {
     var searchStarted = false
         private set
 
+    var actualCoverage = 0.0
+        private set
+
     var lastActionImprovement = -1
         private set
 
@@ -50,7 +53,8 @@ class SearchTimeController {
         listeners.forEach{it.newActionEvaluated()}
     }
 //TODO elde edilen maksimum hedefi burada kaydet. Daha sonra güncelleme olursa hangi adımda olduğunu bildir.
-    fun newCoveredTarget(){
+    fun newCoveredTarget(coverage : Double){
+        actualCoverage = coverage
         newActionImprovement()
 
     }
@@ -85,10 +89,6 @@ class SearchTimeController {
 
     fun shouldContinueSearch(): Boolean{
         return percentageUsedBudget() < 1.0
-    }
-    fun shouldContinueSearchHybrid(): Boolean{
-
-        return percentageUsedBudget() < 0.5
     }
     /**
      * Return how much percentage `[0,1]` of search budget has been used so far

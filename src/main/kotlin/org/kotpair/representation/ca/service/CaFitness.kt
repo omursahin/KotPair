@@ -6,6 +6,7 @@ import org.kotpair.representation.ca.CaIndividual
 import org.kotpair.representation.ca.CaParameters
 import org.kotpair.search.EvaluatedIndividual
 import org.kotpair.search.FitnessValue
+import org.kotpair.search.Heuristics
 import org.kotpair.search.service.FitnessFunction
 
 import org.slf4j.Logger
@@ -73,5 +74,6 @@ class CaFitness : FitnessFunction<CaIndividual>() {
         }
         return column
     }
+
 
 }

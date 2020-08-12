@@ -4,6 +4,7 @@ import com.google.inject.AbstractModule
 import com.google.inject.TypeLiteral
 import org.kotpair.representation.ca.CaIndividual
 import org.kotpair.representation.ca.CaParameters
+import org.kotpair.search.FitnessValue
 import org.kotpair.search.service.FitnessFunction
 import org.kotpair.search.service.Sampler
 import org.kotpair.search.service.neighbourhood.DirectedNeighbour
@@ -26,6 +27,7 @@ class CaModule : AbstractModule(){
 
         bind(CaParameters::class.java)
             .asEagerSingleton()
+
 
         bind(object : TypeLiteral<Neighbour<CaIndividual>>() {})
             .to(object : TypeLiteral<DirectedNeighbour<CaIndividual>>(){})

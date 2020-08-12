@@ -309,7 +309,7 @@ class KPConfig {
 
     @Cfg("The seed for the random generator used during the search. " +
             "A negative value means the CPU clock time will be rather used as seed")
-    var seed: Long = -1
+    var seed: Long = 1
 
 
     enum class StoppingCriterion {
@@ -321,7 +321,7 @@ class KPConfig {
     var stoppingCriterion = StoppingCriterion.FITNESS_EVALUATIONS
 
 
-    val defaultMaxActionEvaluations = 1000000
+    val defaultMaxActionEvaluations = 100000
 
     @Cfg("Maximum number of action evaluations for the search." +
             " A fitness evaluation can be composed of 1 or more actions," +
@@ -378,9 +378,6 @@ class KPConfig {
     @Min(0.0) @Max(1.0)
     var xoverProbability = 0.7
 
-    @Cfg("Number of elements to consider in a Tournament Selection (if any is used in the search algorithm)")
-    @Min(1.0)
-    var tournamentSize = 10
 
     @Cfg("The limit value for the ABC algorithms")
     @Min(0.0)

@@ -7,6 +7,7 @@ import com.google.inject.TypeLiteral
 import org.kotpair.representation.ca.CaIndividual
 import org.kotpair.representation.ca.service.CaFitness
 import org.kotpair.representation.ca.service.CaSampler
+import org.kotpair.search.FitnessValue
 import org.kotpair.search.Randomness
 import org.kotpair.search.service.*
 
@@ -31,6 +32,7 @@ class BaseModule(val args: Array<String>) : AbstractModule() {
 
         bind(Randomness::class.java)
                 .asEagerSingleton()
+
 
         bind(SearchStatusUpdater::class.java)
             .asEagerSingleton()

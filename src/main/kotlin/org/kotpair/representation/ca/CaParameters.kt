@@ -5,6 +5,7 @@ import org.kotpair.KPConfig
 import org.kotpair.search.Parameters
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import sun.security.ec.point.ProjectivePoint
 import java.io.File
 import java.lang.Integer.parseInt
 import javax.annotation.PostConstruct
@@ -74,6 +75,14 @@ class CaParameters : Parameters() {
                 yield(arr[i] to arr[j])
     }
 
+    fun getPairIndexes(pairOne:Int): MutableList<Int> {
+        val pairList = mutableListOf<Int>()
+        val pairContains = testCasePairs.filter{it.first==pairOne||it.second==pairOne}
+        pairContains.iterator().forEach {
+            pairList.add(getTargetId(it.first,it.second))
+        }
+        return pairList
+    }
     fun getTargetId(pairOne:Int, pairTwo:Int):Int{
         return testCasePairs.indexOf(Pair(pairOne,pairTwo))
     }

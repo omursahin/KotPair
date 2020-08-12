@@ -19,6 +19,8 @@ class SearchStatusUpdater : SearchListener{
     
     private var passed = -1
 
+    private var coverage = 0.0
+
     private var extra = ""
 
     private val utf8 = Charset.forName("UTF-8")
@@ -58,8 +60,9 @@ class SearchStatusUpdater : SearchListener{
 
 
 
+
             upLineAndErase()
-            println("$consumedMessage $passed%")
+            println("$consumedMessage $passed% Coverage: $coverage")
 
 
         }
