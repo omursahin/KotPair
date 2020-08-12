@@ -16,6 +16,12 @@ class FitnessValue(
         }
     }
 
+    companion object {
+
+        const val MAX_VALUE = 1.0
+
+        fun isMaxValue(value: Double) = value == MAX_VALUE
+    }
 
     private val targets: MutableMap<Int, Heuristics> = mutableMapOf()
 
@@ -44,9 +50,13 @@ class FitnessValue(
     }
 // Her bir değerin max valuelarını ayarlamak lazım
 //      Belki kullanilabilir her bir hedef ayri ayri dusunulebilirse
-//    fun coveredTargets(): Int {
-//
-//        return targets.values.filter { t -> t.distance == MAX_VALUE }.count()
-//    }
 
+    fun coveredTargets(): Int {
+
+        return targets.values.filter { t -> t.distance/t.maxValue == MAX_VALUE }.count()
+    }
+
+    fun doesCover(target: Int): Boolean {
+        return targets[target]?.distance?:0.0 / targets[target]?.maxValue!! ?:1.0 == MAX_VALUE
+    }
 }

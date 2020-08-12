@@ -74,6 +74,10 @@ class CaParameters : Parameters() {
                 yield(arr[i] to arr[j])
     }
 
+    fun getTargetId(pairOne:Int, pairTwo:Int):Int{
+        return testCasePairs.indexOf(Pair(pairOne,pairTwo))
+    }
+
     fun maximumPairNumber(): Double {
         var maxPair = 0.0
         testCasePairs.iterator().forEach {

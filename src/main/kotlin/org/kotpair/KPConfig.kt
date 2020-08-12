@@ -384,7 +384,7 @@ class KPConfig {
 
     @Cfg("The limit value for the ABC algorithms")
     @Min(0.0)
-    var limit = 10
+    var limit = 1000
 
 
     @Cfg("When sampling new test cases to evaluate, probability of using some smart strategy instead of plain random")
@@ -393,11 +393,11 @@ class KPConfig {
 
     @Cfg("Min number of 'test case' that can be done in a single test")
     @Min(1.0)
-    var minTestSize = 20
+    var minTestSize = 16
 
     @Cfg("Max number of 'test case' that can be done in a single test")
     @Min(1.0)
-    var maxTestSize = 27
+    var maxTestSize = 20
 
     @Cfg("Whether to print how much search done so far")
     var showProgress = true

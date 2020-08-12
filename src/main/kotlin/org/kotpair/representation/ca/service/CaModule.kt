@@ -6,6 +6,7 @@ import org.kotpair.representation.ca.CaIndividual
 import org.kotpair.representation.ca.CaParameters
 import org.kotpair.search.service.FitnessFunction
 import org.kotpair.search.service.Sampler
+import org.kotpair.search.service.neighbourhood.DirectedNeighbour
 import org.kotpair.search.service.neighbourhood.Neighbour
 import org.kotpair.search.service.neighbourhood.StandardNeighbour
 
@@ -27,7 +28,7 @@ class CaModule : AbstractModule(){
             .asEagerSingleton()
 
         bind(object : TypeLiteral<Neighbour<CaIndividual>>() {})
-            .to(object : TypeLiteral<StandardNeighbour<CaIndividual>>(){})
+            .to(object : TypeLiteral<DirectedNeighbour<CaIndividual>>(){})
             .asEagerSingleton()
     }
 }
