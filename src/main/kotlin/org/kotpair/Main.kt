@@ -11,8 +11,8 @@ import org.kotpair.AnsiColor.Companion.inYellow
 import org.kotpair.logging.LoggingUtil
 import org.kotpair.representation.ca.CaIndividual
 import org.kotpair.representation.ca.service.CaModule
-import org.kotpair.search.Individual
 import org.kotpair.search.algorithms.ABCAlgorithm
+import org.kotpair.search.algorithms.GeneticAlgorithm
 import java.lang.reflect.InvocationTargetException
 
 
@@ -128,7 +128,7 @@ class Main {
             val representationType = base.getKPConfig().representationType
 
             val representationModule = when (representationType) {
-                KPConfig.RepresentationType.COVERING_ARRAY-> CaModule()
+                KPConfig.RepresentationType.COVERING_ARRAY-> CaModule(base.getKPConfig())
                 else -> throw IllegalStateException("Unrecognized representation type: $representationType")
             }
             try {
@@ -164,7 +164,8 @@ class Main {
            val key = when (config.algorithm) {
                 KPConfig.Algorithm.ABC -> Key.get(
                         object : TypeLiteral<ABCAlgorithm<CaIndividual>>() {})
-
+               KPConfig.Algorithm.GA -> Key.get(
+                   object : TypeLiteral<GeneticAlgorithm<CaIndividual>>() {})
 
                 else -> throw IllegalStateException("Unrecognized algorithm ${config.algorithm}")
             }

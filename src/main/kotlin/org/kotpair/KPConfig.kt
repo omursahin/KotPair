@@ -293,11 +293,21 @@ class KPConfig {
 //--- properties
 
     enum class Algorithm {
-        ABC
+        ABC,
+        GA
     }
 
     @Cfg("The algorithm used to generate test cases")
-    var algorithm = Algorithm.ABC
+    var algorithm = Algorithm.GA
+
+    enum class Neighbour {
+        STANDARD,
+        DIRECTED,
+        GENETIC
+    }
+
+    @Cfg("The neighbour mechanism used to generate test cases")
+    var neighbourType = Neighbour.GENETIC
 
     enum class RepresentationType {
         COVERING_ARRAY
@@ -368,7 +378,7 @@ class KPConfig {
 
     @Cfg("Define the population size in the search algorithms that use populations (e.g., Genetic Algorithms, but not MIO)")
     @Min(1.0)
-    var populationSize = 50
+    var populationSize = 60
 
     @Cfg("Define the maximum number of tests in a suite in the search algorithms that evolve whole suites, e.g. WTS")
     @Min(1.0)
@@ -394,7 +404,7 @@ class KPConfig {
 
     @Cfg("Max number of 'test case' that can be done in a single test")
     @Min(1.0)
-    var maxTestSize = 20
+    var maxTestSize = 16
 
     @Cfg("Whether to print how much search done so far")
     var showProgress = true
