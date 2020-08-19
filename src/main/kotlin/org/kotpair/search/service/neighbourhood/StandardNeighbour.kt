@@ -55,4 +55,11 @@ open class StandardNeighbour<T> : Neighbour<T>() where T : Individual {
         return (x%m+m)%m
     }
 
+    override fun findNeighbours(
+        individualOne: EvaluatedIndividual<T>,
+        individualTwo: EvaluatedIndividual<T>
+    ): Pair<T, T> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 }

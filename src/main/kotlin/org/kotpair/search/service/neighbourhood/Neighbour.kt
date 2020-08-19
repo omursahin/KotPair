@@ -37,5 +37,8 @@ abstract class Neighbour<T> where T : Individual {
     abstract fun findNeighbour(individualOne: EvaluatedIndividual<T>,
                                individualTwo: EvaluatedIndividual<T>): T
 
+    abstract fun findNeighbours(individualOne: EvaluatedIndividual<T>,
+                               individualTwo: EvaluatedIndividual<T>): Pair<T,T>
+
 
 }
