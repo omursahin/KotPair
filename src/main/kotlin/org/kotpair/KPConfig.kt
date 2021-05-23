@@ -298,7 +298,7 @@ class KPConfig {
     }
 
     @Cfg("The algorithm used to generate test cases")
-    var algorithm = Algorithm.GA
+    var algorithm = Algorithm.ABC
 
     enum class Neighbour {
         STANDARD,
@@ -386,7 +386,7 @@ class KPConfig {
 
     @Cfg("Probability of applying crossover operation (if any is used in the search algorithm)")
     @Min(0.0) @Max(1.0)
-    var xoverProbability = 0.7
+    var xoverProbability = 0.8
 
 
     @Cfg("The limit value for the ABC algorithms")
@@ -404,7 +404,7 @@ class KPConfig {
 
     @Cfg("Max number of 'test case' that can be done in a single test")
     @Min(1.0)
-    var maxTestSize = 16
+    var maxTestSize = 18
 
     @Cfg("Whether to print how much search done so far")
     var showProgress = true
@@ -415,11 +415,11 @@ class KPConfig {
 
     @Cfg("Number of applied mutations on sampled individuals, at the start of the search")
     @Min(0.0)
-    var startNumberOfChanges = 15
+    var startNumberOfChanges = 1
 
     @Cfg("Number of applied mutations on sampled individuals, by the end of the search")
     @Min(0.0)
-    var endNumberOfChanges = 20
+    var endNumberOfChanges = 1
 
 
     @Experimental

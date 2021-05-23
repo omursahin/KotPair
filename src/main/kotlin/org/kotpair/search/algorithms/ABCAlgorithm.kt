@@ -41,13 +41,16 @@ class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
             population.forEachIndexed { index, pop ->
                 if(time.shouldContinueSearch()){
                     val secondIndex = randomness.nextInt(population.size)
-                    getNeighbour().findNeighbour(pop.ind as EvaluatedIndividual<T>, population.get(secondIndex).ind as EvaluatedIndividual<T>)?.let {
-                        ff.calculateCoverage(it)?.also { it2 ->
-                            if(it2.fitness.computeFitnessScore()>population.get(index).ind.fitness.computeFitnessScore()){
+                    getNeighbour().findNeighbours(pop.ind as EvaluatedIndividual<T>, population.get(secondIndex).ind as EvaluatedIndividual<T>)?.let {
+                        ff.calculateCoverage(it.first)?.also { it2 ->
+                            ff.calculateCoverage(it.second)?.also { it3->
+                                val newParent = if(it2.fitness.computeFitnessScore()>it3.fitness.computeFitnessScore()) it2 else it3
+                            if(newParent.fitness.computeFitnessScore()>population.get(index).ind.fitness.computeFitnessScore()){
                                 population.set(index,(Data(it2)))
                             }else {
                                 population.get(index).trial += 1
                             }
+                        }
                         }
                     }
 
@@ -72,14 +75,17 @@ class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
                 if(randomness.nextBoolean(prob)){
                     val secondIndex = randomness.nextInt(population.size)
 
-                    getNeighbour().findNeighbour(population.get(dCount).ind as EvaluatedIndividual<T>, population.get(secondIndex).ind as EvaluatedIndividual<T>)?.let {
-                        ff.calculateCoverage(it)?.also { it2 ->
-                            if(it2.fitness.computeFitnessScore()>population.get(dCount).ind.fitness.computeFitnessScore()){
+                    getNeighbour().findNeighbours(population.get(dCount).ind as EvaluatedIndividual<T>, population.get(secondIndex).ind as EvaluatedIndividual<T>)?.let {
+                        ff.calculateCoverage(it.first)?.also { it2 ->
+                            ff.calculateCoverage(it.second)?.also {it3->
+                                val newParent = if(it2.fitness.computeFitnessScore()>it3.fitness.computeFitnessScore()) it2 else it3
+
+                                if(newParent.fitness.computeFitnessScore()>population.get(dCount).ind.fitness.computeFitnessScore()){
                                 population.set(dCount,(Data(it2)))
                             }else {
                                 population.get(dCount).trial += 1
                             }
-                        }
+                        }}
                     }
                     popCount+=1
                 }

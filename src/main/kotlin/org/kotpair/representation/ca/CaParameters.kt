@@ -5,7 +5,6 @@ import org.kotpair.KPConfig
 import org.kotpair.search.Parameters
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import sun.security.ec.point.ProjectivePoint
 import java.io.File
 import java.lang.Integer.parseInt
 import javax.annotation.PostConstruct

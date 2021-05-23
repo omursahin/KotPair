@@ -17,7 +17,12 @@ open class DirectedNeighbour<T> : Neighbour<T>() where T : Individual {
      */
     private val intpow2 = (0..30).map { Math.pow(2.0, it.toDouble()).toInt() }
 
-
+    override fun findNeighbours(
+        individualOne: EvaluatedIndividual<T>,
+        individualTwo: EvaluatedIndividual<T>
+    ): Pair<T, T> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun findNeighbour(individualOne: EvaluatedIndividual<T>,
                                individualTwo: EvaluatedIndividual<T>): T {

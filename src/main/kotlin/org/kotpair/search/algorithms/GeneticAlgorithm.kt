@@ -28,10 +28,14 @@ class  GeneticAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
             population.forEachIndexed { index, pop ->
                 if(time.shouldContinueSearch()){
                     val secondIndex = randomness.nextInt(population.size)
-                    getNeighbour().findNeighbour(pop as EvaluatedIndividual<T>, population.get(secondIndex) as EvaluatedIndividual<T>)?.let {
-                        ff.calculateCoverage(it)?.also { it2 ->
-                            if(it2.fitness.computeFitnessScore()>population.get(index).fitness.computeFitnessScore()){
-                                population.set(index,(it2))
+                    getNeighbour().findNeighbours(pop as EvaluatedIndividual<T>, population.get(secondIndex) as EvaluatedIndividual<T>)?.let {
+                        ff.calculateCoverage(it.first)?.also { it2 ->
+                            ff.calculateCoverage(it.second)?.also { it3 ->
+                                val newParent = if(it3.fitness.computeFitnessScore() > it2.fitness.computeFitnessScore())  it3 else it2
+
+                            if(newParent.fitness.computeFitnessScore()>population.get(index).fitness.computeFitnessScore()){
+                                population.set(index,(newParent))
+                            }
                             }
                         }
                     }

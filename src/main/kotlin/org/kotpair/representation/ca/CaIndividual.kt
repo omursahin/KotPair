@@ -7,7 +7,7 @@ class CaIndividual(override val testCases:MutableList<IntArray>) : Individual() 
 
     override fun copy(): Individual {
         return CaIndividual(
-            testCases
+            testCases.toMutableList()
         )
     }
 
