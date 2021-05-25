@@ -55,7 +55,7 @@ open class GeneticNeighbour<T> : Neighbour<T>() where T : Individual {
 
        val ind1 = mutate(newPair.first,individualOne.fitness.getProbabilityMap(param))
        val ind2 = mutate(newPair.second,individualTwo.fitness.getProbabilityMap(param))
-        //kac defa hangi elemanlar degistirilecek ona bak.
+        //TODO kac defa hangi elemanlar degistirilecek ona bak.
 
 
         return Pair(ind1, ind2)

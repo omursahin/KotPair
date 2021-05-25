@@ -22,6 +22,7 @@ class  GeneticAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
         time.startSearch()
         population.clear()
         initPopulation(config.populationSize)
+        var nextPop: MutableList<EvaluatedIndividual<*>> = mutableListOf()
 
         while (time.shouldContinueSearch()) {
 
@@ -41,6 +42,13 @@ class  GeneticAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
                     }
 
                 }}
+            nextPop.addAll(population.sortedWith(compareBy { it.fitness.computeFitnessScore() })
+                .toMutableList())
+
+            population.clear()
+            population.addAll(nextPop)
+            nextPop.clear()
+
             //TODO bu raporlama kısmını raporlamaya aktar.
             println("First: ${population.get(0).fitness.computeFitnessScore()} - Second: ${population.get(population.size-1).fitness.computeFitnessScore()} - Max Val: ${ff.getMaxValue()}")
         }

@@ -298,7 +298,7 @@ class KPConfig {
     }
 
     @Cfg("The algorithm used to generate test cases")
-    var algorithm = Algorithm.ABC
+    var algorithm = Algorithm.GA
 
     enum class Neighbour {
         STANDARD,
@@ -313,13 +313,13 @@ class KPConfig {
         COVERING_ARRAY
     }
 
-    @Cfg("The type of SUT we want to generate tests for, e.g., a RESTful API")
+    @Cfg("The type of representation")
     var representationType = RepresentationType.COVERING_ARRAY
 
 
     @Cfg("The seed for the random generator used during the search. " +
             "A negative value means the CPU clock time will be rather used as seed")
-    var seed: Long = 1
+    var seed: Long = -1
 
 
     enum class StoppingCriterion {
@@ -331,7 +331,7 @@ class KPConfig {
     var stoppingCriterion = StoppingCriterion.FITNESS_EVALUATIONS
 
 
-    val defaultMaxActionEvaluations = 100000
+    val defaultMaxActionEvaluations = 1000000
 
     @Cfg("Maximum number of action evaluations for the search." +
             " A fitness evaluation can be composed of 1 or more actions," +
@@ -400,11 +400,11 @@ class KPConfig {
 
     @Cfg("Min number of 'test case' that can be done in a single test")
     @Min(1.0)
-    var minTestSize = 16
+    var minTestSize = 15
 
     @Cfg("Max number of 'test case' that can be done in a single test")
     @Min(1.0)
-    var maxTestSize = 18
+    var maxTestSize = 15
 
     @Cfg("Whether to print how much search done so far")
     var showProgress = true

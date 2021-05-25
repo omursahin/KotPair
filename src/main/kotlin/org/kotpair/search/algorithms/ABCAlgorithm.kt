@@ -38,8 +38,10 @@ class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
             dongu+=1
 
             // Employed Bee Phase
+
             population.forEachIndexed { index, pop ->
                 if(time.shouldContinueSearch()){
+
                     val secondIndex = randomness.nextInt(population.size)
                     getNeighbour().findNeighbours(pop.ind as EvaluatedIndividual<T>, population.get(secondIndex).ind as EvaluatedIndividual<T>)?.let {
                         ff.calculateCoverage(it.first)?.also { it2 ->
@@ -55,22 +57,23 @@ class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {
                     }
 
                 }}
+
             nextPop.addAll(population.sortedWith(compareBy { it.ind.fitness.computeFitnessScore() })
                 .toMutableList())
+
             population.clear()
             population.addAll(nextPop)
             nextPop.clear()
 
             //Onlooker Bee Phase
-
             var popCount=0
             var dCount=0
             val maxVal = population.get(population.size-1).ind.fitness.computeFitnessScore()
+
             while (popCount<population.size && time.shouldContinueSearch())
             {
 
-
-                val prob = 1-((population.get(dCount).ind.fitness.computeFitnessScore() * 0.9)/maxVal + 0.1)
+                val prob = ((population.get(dCount).ind.fitness.computeFitnessScore() * 0.9)/maxVal + 0.1)
 
                 if(randomness.nextBoolean(prob)){
                     val secondIndex = randomness.nextInt(population.size)
