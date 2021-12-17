@@ -391,7 +391,7 @@ class KPConfig {
 
     @Cfg("The limit value for the ABC algorithms")
     @Min(0.0)
-    var limit = 1000
+    var limit = 100
 
 
     @Cfg("When sampling new test cases to evaluate, probability of using some smart strategy instead of plain random")

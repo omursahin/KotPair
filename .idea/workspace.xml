@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="62904e1b-5a79-4708-bb40-3417f35b03a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parameters.txt" beforeDir="false" afterPath="$PROJECT_DIR$/parameters.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/KPConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/KPConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/algorithms/ABCAlgorithm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/algorithms/ABCAlgorithm.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/algorithms/GeneticAlgorithm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/algorithms/GeneticAlgorithm.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/service/neighbourhood/GeneticNeighbour.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/service/neighbourhood/GeneticNeighbour.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/META-INF/KotPair.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/KotPair.kotlin_module" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +58,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PairwiseABC" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="outdated.bundled.kotlin.compiler" value="1.3.60-release-IJ2019.1-1" />
@@ -89,6 +85,19 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="JetRunConfigurationType" nameIsGenerated="true">
       <module name="KotPair" />
       <option name="VM_PARAMETERS" value="" />
@@ -146,7 +155,7 @@
       <workItem from="1597491543667" duration="5297000" />
       <workItem from="1598115647149" duration="58000" />
       <workItem from="1621773080678" duration="785000" />
-      <workItem from="1621838383095" duration="6692000" />
+      <workItem from="1639733967455" duration="637000" />
     </task>
     <servers />
   </component>
@@ -192,6 +201,11 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/algorithms/ABCAlgorithm.kt</url>
+          <line>77</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/service/neighbourhood/StandardNeighbour.kt</url>
           <line>27</line>
           <option name="timeStamp" value="33" />
@@ -200,6 +214,21 @@
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/service/neighbourhood/GeneticNeighbour.kt</url>
           <line>27</line>
           <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/kotpair/Main.kt</url>
+          <line>52</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/algorithms/GeneticAlgorithm.kt</url>
+          <line>23</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/algorithms/GeneticAlgorithm.kt</url>
+          <line>63</line>
+          <option name="timeStamp" value="40" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
