@@ -2,13 +2,11 @@ package org.kotpair.search.algorithms
 
 import com.google.inject.Inject
 import org.kotpair.KPConfig
-import org.kotpair.representation.ca.CaIndividual
 import org.kotpair.search.EvaluatedIndividual
 import org.kotpair.search.FitnessValue
 import org.kotpair.search.Individual
 import org.kotpair.search.Solution
 import org.kotpair.search.service.SearchAlgorithm
-import java.lang.Exception
 
 
 class  ABCAlgorithm<T> : SearchAlgorithm<T>() where T : Individual {

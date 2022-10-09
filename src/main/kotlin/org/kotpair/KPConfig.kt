@@ -310,11 +310,12 @@ class KPConfig {
     var neighbourType = Neighbour.GENETIC
 
     enum class RepresentationType {
-        COVERING_ARRAY
+        COVERING_ARRAY,
+        T_TUPLE
     }
 
     @Cfg("The type of representation")
-    var representationType = RepresentationType.COVERING_ARRAY
+    var representationType = RepresentationType.T_TUPLE
 
 
     @Cfg("The seed for the random generator used during the search. " +

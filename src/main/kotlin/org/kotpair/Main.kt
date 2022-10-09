@@ -11,8 +11,14 @@ import org.kotpair.AnsiColor.Companion.inYellow
 import org.kotpair.logging.LoggingUtil
 import org.kotpair.representation.ca.CaIndividual
 import org.kotpair.representation.ca.service.CaModule
+import org.kotpair.representation.t_tuple.TTupleIndividual
+import org.kotpair.representation.t_tuple.service.TTupleModule
+import org.kotpair.search.Individual
 import org.kotpair.search.algorithms.ABCAlgorithm
 import org.kotpair.search.algorithms.GeneticAlgorithm
+import org.kotpair.search.service.neighbourhood.DirectedNeighbour
+import org.kotpair.search.service.neighbourhood.GeneticNeighbour
+import org.kotpair.search.service.neighbourhood.StandardNeighbour
 import java.lang.reflect.InvocationTargetException
 
 
@@ -129,6 +135,7 @@ class Main {
 
             val representationModule = when (representationType) {
                 KPConfig.RepresentationType.COVERING_ARRAY-> CaModule(base.getKPConfig())
+                KPConfig.RepresentationType.T_TUPLE-> TTupleModule(base.getKPConfig())
                 else -> throw IllegalStateException("Unrecognized representation type: $representationType")
             }
             try {
@@ -161,13 +168,23 @@ class Main {
             val config = injector.getInstance(KPConfig::class.java)
 
 
-           val key = when (config.algorithm) {
-                KPConfig.Algorithm.ABC -> Key.get(
-                        object : TypeLiteral<ABCAlgorithm<CaIndividual>>() {})
-               KPConfig.Algorithm.GA -> Key.get(
-                   object : TypeLiteral<GeneticAlgorithm<CaIndividual>>() {})
 
-                else -> throw IllegalStateException("Unrecognized algorithm ${config.algorithm}")
+           val key = when (config.algorithm) {
+                   KPConfig.Algorithm.ABC ->
+                       when (config.representationType) {
+                           KPConfig.RepresentationType.COVERING_ARRAY -> Key.get(
+                       object : TypeLiteral<ABCAlgorithm<CaIndividual>>() {})
+                           KPConfig.RepresentationType.T_TUPLE -> Key.get(
+                               object : TypeLiteral<ABCAlgorithm<TTupleIndividual>>() {})
+                       }
+                   KPConfig.Algorithm.GA -> when (config.representationType) {
+                       KPConfig.RepresentationType.COVERING_ARRAY -> Key.get(
+                           object : TypeLiteral<GeneticAlgorithm<CaIndividual>>() {})
+                       KPConfig.RepresentationType.T_TUPLE -> Key.get(
+                           object : TypeLiteral<GeneticAlgorithm<TTupleIndividual>>() {})
+                   }
+                   else -> throw IllegalStateException("Unrecognized algorithm ${config.algorithm}")
+
             }
 
             val imp = injector.getInstance(key)

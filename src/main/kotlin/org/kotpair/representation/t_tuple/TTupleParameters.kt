@@ -10,14 +10,14 @@ import java.lang.Integer.parseInt
 import javax.annotation.PostConstruct
 
 
-class CaParameters : Parameters() {
+class TTupleParameters : Parameters() {
 
     private class Parameter(var maximumRange: Int,  var paramName:String) {
 
     }
 
     companion object {
-        private val log: Logger = LoggerFactory.getLogger(CaParameters::class.java)
+        private val log: Logger = LoggerFactory.getLogger(TTupleParameters::class.java)
     }
 
     @Inject
@@ -42,7 +42,7 @@ class CaParameters : Parameters() {
     fun getMaximumNumberOfPair()=maximumNumberOfPair
 
     override fun copy(): Parameters {
-        return CaParameters()
+        return TTupleParameters()
     }
 
     override fun size() = parameters.size
@@ -50,7 +50,7 @@ class CaParameters : Parameters() {
     @PostConstruct
     private fun initialize() {
 
-        log.debug("Initializing {}", CaParameters::class.simpleName)
+        TTupleParameters.log.debug("Initializing {}", TTupleParameters::class.simpleName)
         //Read the input file
         File(configuration.parametersFile).useLines {
             val parameterList = it.toList().iterator()
@@ -65,7 +65,7 @@ class CaParameters : Parameters() {
         }
         testCasePairs = elementPairs(listOf(0..size()-1).flatten())
         maximumNumberOfPair = maximumPairNumber()
-        CaParameters.log.debug("Done initializing {}", CaParameters::class.simpleName)
+        TTupleParameters.log.debug("Done initializing {}", TTupleParameters::class.simpleName)
     }
 
     fun <T> elementPairs(arr: List<T>): Sequence<Pair<T, T>> = sequence {

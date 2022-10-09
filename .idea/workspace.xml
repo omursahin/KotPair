@@ -7,7 +7,11 @@
     <list default="true" id="62904e1b-5a79-4708-bb40-3417f35b03a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/KPConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/KPConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/KotPair.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/KotPair.kotlin_module" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/representation/ca/CaParameters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/representation/ca/CaParameters.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/algorithms/ABCAlgorithm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/algorithms/ABCAlgorithm.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/service/Sampler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/service/Sampler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/service/SearchAlgorithm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/service/SearchAlgorithm.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +72,10 @@
     <property name="settings.editor.selected.configurable" value="preferences.language.Kotlin" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Calismalar\KotPair" />
+      <recent name="F:\Calismalar\KotPair\src\main\kotlin\org\kotpair" />
+    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="org.kotpair.search" />
       <recent name="org.kotpair" />
@@ -79,25 +87,8 @@
       <recent name="org.kotpair.representation.ca" />
       <recent name="org.kotpair.representation.ca.service" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Calismalar\KotPair" />
-      <recent name="F:\Calismalar\KotPair\src\main\kotlin\org\kotpair" />
-    </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="JetRunConfigurationType" nameIsGenerated="true">
       <module name="KotPair" />
       <option name="VM_PARAMETERS" value="" />
@@ -156,6 +147,9 @@
       <workItem from="1598115647149" duration="58000" />
       <workItem from="1621773080678" duration="785000" />
       <workItem from="1639733967455" duration="637000" />
+      <workItem from="1639813432806" duration="24000" />
+      <workItem from="1639942865132" duration="1142000" />
+      <workItem from="1640344955501" duration="96000" />
     </task>
     <servers />
   </component>
@@ -202,7 +196,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/algorithms/ABCAlgorithm.kt</url>
-          <line>77</line>
+          <line>75</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
@@ -216,11 +210,6 @@
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/org/kotpair/Main.kt</url>
-          <line>52</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/algorithms/GeneticAlgorithm.kt</url>
           <line>23</line>
           <option name="timeStamp" value="39" />
@@ -229,6 +218,11 @@
           <url>file://$PROJECT_DIR$/src/main/kotlin/org/kotpair/search/algorithms/GeneticAlgorithm.kt</url>
           <line>63</line>
           <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/org/kotpair/Main.kt</url>
+          <line>171</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

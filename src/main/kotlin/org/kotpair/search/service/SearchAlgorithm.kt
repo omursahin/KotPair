@@ -6,7 +6,6 @@ import org.kotpair.KPConfig
 import org.kotpair.search.Randomness
 import org.kotpair.search.Solution
 import org.kotpair.search.service.neighbourhood.Neighbour
-import org.kotpair.search.service.neighbourhood.StandardNeighbour
 
 
 abstract class SearchAlgorithm<T> where T : Individual {
